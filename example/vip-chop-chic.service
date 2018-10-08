@@ -1,0 +1,17 @@
+[Unit]
+Description=procServ for vip-chop-chic
+After=network.target remote-fs.target
+ConditionPathIsDirectory=/home/root/vip/vip-chop-chic
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/procServ "/opt/epics/modules/environment/2.0.0/3.15.4/bin/centos7-x86_64/iocsh st.cmd"
+RuntimeDirectory=/home/root/vip/vip-chop-chic
+StandardOutput=syslog
+StandardError=inherit
+SyslogIdentifier=procserv-vip-chop-chic
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
